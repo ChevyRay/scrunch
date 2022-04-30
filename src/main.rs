@@ -72,8 +72,8 @@ fn main() {
             let atlas = Atlas::load();
 
             let mut used_paths = HashSet::new();
-            let mut images: Vec<(PathBuf, RgbaImage)> = Vec::new();
-            let mut to_pack: Vec<Item<usize>> = Vec::new();
+            let mut images = Vec::new();
+            let mut to_pack = Vec::new();
 
             println!("loading images...");
 
@@ -111,8 +111,11 @@ fn main() {
                         continue;
                     }
 
-                    // only pack PNG files
-                    if img_path.extension() != Some(&OsStr::new("png")) {
+                    // only pack PNG and JPG files
+                    if !matches!(
+                        img_path.extension().and_then(OsStr::to_str),
+                        Some("png" | "jpg")
+                    ) {
                         continue;
                     }
 
