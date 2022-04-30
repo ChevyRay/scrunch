@@ -113,7 +113,6 @@ fn main() {
 
             // Create an atlas image to draw to
             let mut atlas_img: RgbaImage = RgbaImage::new(atlas_w as u32, atlas_h as u32);
-            //ImageBuffer::from_fn(atlas_w as u32, atlas_h as u32, |_, _| Rgba([0, 0, 0, 0]));
 
             let mut desc = Descriptor::default();
 
