@@ -1,6 +1,6 @@
 use clap::{Arg, ArgMatches, Command};
 use crunch::{Item, Rotation};
-use image::{GenericImage, ImageBuffer, ImageFormat, Rgba, RgbaImage};
+use image::{GenericImage, ImageFormat, RgbaImage};
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 use std::ffi::OsStr;
@@ -142,8 +142,8 @@ fn main() {
             println!("rendering final atlas...");
 
             // Create an atlas image to draw to
-            let mut atlas_img: RgbaImage =
-                ImageBuffer::from_fn(atlas_w as u32, atlas_h as u32, |_, _| Rgba([0, 0, 0, 0]));
+            let mut atlas_img: RgbaImage = RgbaImage::new(atlas_w as u32, atlas_h as u32);
+            //ImageBuffer::from_fn(atlas_w as u32, atlas_h as u32, |_, _| Rgba([0, 0, 0, 0]));
 
             let mut desc = Descriptor::default();
 
