@@ -84,12 +84,8 @@ fn main() {
                     atlas
                         .dirs
                         .iter()
-                        .map(|dir| {
-                            fs::read_dir(dir)
-                                .unwrap()
-                                .filter_map(|e| e.ok().and_then(|e| Some(e.path())))
-                        })
-                        .flatten(),
+                        .filter_map(|dir| fs::read_dir(dir).ok())
+                        .flat_map(|dir| dir.filter_map(|e| e.ok().and_then(|e| Some(e.path())))),
                 )
                 .filter(|p| used_paths.insert(p.clone()))
                 .filter(|p| matches!(p.extension().and_then(OsStr::to_str), Some("png" | "jpg")))
