@@ -77,16 +77,26 @@ fn main() {
 
             println!("loading images...");
 
-            // load every image
-            for img_path in &atlas.images {
-                // don't pack the same images twice
-                if !used_paths.insert(img_path.clone()) {
-                    continue;
-                }
-
+            for img_path in atlas
+                .images
+                .into_iter()
+                .chain(
+                    atlas
+                        .dirs
+                        .iter()
+                        .map(|dir| {
+                            fs::read_dir(dir)
+                                .unwrap()
+                                .filter_map(|e| e.ok().and_then(|e| Some(e.path())))
+                        })
+                        .flatten(),
+                )
+                .filter(|p| used_paths.insert(p.clone()))
+                .filter(|p| matches!(p.extension().and_then(OsStr::to_str), Some("png" | "jpg")))
+            {
                 println!("\t{:?}", img_path);
 
-                let img = image::open(img_path).unwrap().to_rgba8();
+                let img = image::open(&img_path).unwrap().to_rgba8();
 
                 to_pack.push(Item::new(
                     images.len(),
@@ -96,42 +106,6 @@ fn main() {
                 ));
 
                 images.push((img_path.clone(), img));
-            }
-
-            // load images in all the folders
-            for img_dir in &atlas.dirs {
-                for entry in fs::read_dir(img_dir)
-                    .unwrap()
-                    .filter_map(|entry| entry.ok())
-                {
-                    let img_path = entry.path();
-
-                    // don't pack the same images twice
-                    if !used_paths.insert(img_path.clone()) {
-                        continue;
-                    }
-
-                    // only pack PNG and JPG files
-                    if !matches!(
-                        img_path.extension().and_then(OsStr::to_str),
-                        Some("png" | "jpg")
-                    ) {
-                        continue;
-                    }
-
-                    println!("\t{:?}", img_path);
-
-                    let img = image::open(&img_path).unwrap().to_rgba8();
-
-                    to_pack.push(Item::new(
-                        images.len(),
-                        img.width() as usize,
-                        img.height() as usize,
-                        Rotation::None,
-                    ));
-
-                    images.push((img_path, img));
-                }
             }
 
             println!("packing rectangles...");
