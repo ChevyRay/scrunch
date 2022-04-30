@@ -1,2 +1,2 @@
-images = ["images/img1.png"]
-dirs = ["images"]
+image_paths = ["images/img1.png"]
+image_folders = ["images"]

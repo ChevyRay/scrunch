@@ -55,16 +55,19 @@ fn main() {
             let mut atlas = Atlas::load();
 
             let file = args.value_of("file").unwrap();
+
+            // Check if the file actually exists
             let file = PathBuf::from(file);
             if !file.exists() {
                 println!("file does not exist: {:?}", file);
                 return;
             }
 
+            // Check if the file is a file or a directory
             if file.is_file() {
-                atlas.images.insert(file);
+                atlas.image_paths.insert(file);
             } else if file.is_dir() {
-                atlas.dirs.insert(file);
+                atlas.image_folders.insert(file);
             }
 
             atlas.save(None);
@@ -78,12 +81,14 @@ fn main() {
 
             println!("loading images...");
 
+            // Iterate through all our image paths
             for img_path in atlas
-                .images
+                .image_paths
                 .into_iter()
                 .chain(
+                    // Also iterate through all files in our image directories
                     atlas
-                        .dirs
+                        .image_folders
                         .iter()
                         .filter_map(|dir| fs::read_dir(dir).ok())
                         .flat_map(|dir| dir.filter_map(|e| e.ok().and_then(|e| Some(e.path())))),
@@ -154,17 +159,17 @@ fn main() {
 #[derive(Serialize, Deserialize)]
 pub struct Atlas {
     #[serde(default)]
-    images: HashSet<PathBuf>,
+    image_paths: HashSet<PathBuf>,
 
     #[serde(default)]
-    dirs: HashSet<PathBuf>,
+    image_folders: HashSet<PathBuf>,
 }
 
 impl Atlas {
     pub fn new() -> Self {
         Self {
-            images: HashSet::new(),
-            dirs: HashSet::new(),
+            image_paths: HashSet::new(),
+            image_folders: HashSet::new(),
         }
     }
 
