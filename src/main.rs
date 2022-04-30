@@ -20,6 +20,7 @@ use std::path::PathBuf;
 fn main() {
     // Describe our command line program
     let matches: ArgMatches = Command::new("Scrunch")
+        .about("A command-line sprite packer for bundling images.")
         .arg_required_else_help(true)
         .subcommand(
             Command::new("new")
