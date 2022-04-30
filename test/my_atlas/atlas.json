@@ -1,0 +1,137 @@
+{
+  "entries": [
+    {
+      "name": "images/img11.png",
+      "x": 0,
+      "y": 0,
+      "w": 40,
+      "h": 40
+    },
+    {
+      "name": "images/img18.png",
+      "x": 40,
+      "y": 0,
+      "w": 40,
+      "h": 40
+    },
+    {
+      "name": "images/img7.png",
+      "x": 80,
+      "y": 0,
+      "w": 40,
+      "h": 20
+    },
+    {
+      "name": "images/img9.png",
+      "x": 80,
+      "y": 20,
+      "w": 20,
+      "h": 40
+    },
+    {
+      "name": "images/img12.png",
+      "x": 0,
+      "y": 40,
+      "w": 40,
+      "h": 10
+    },
+    {
+      "name": "images/img10.png",
+      "x": 100,
+      "y": 20,
+      "w": 20,
+      "h": 20
+    },
+    {
+      "name": "images/img6.png",
+      "x": 100,
+      "y": 40,
+      "w": 20,
+      "h": 20
+    },
+    {
+      "name": "images/img8.png",
+      "x": 40,
+      "y": 40,
+      "w": 20,
+      "h": 20
+    },
+    {
+      "name": "images/img0.png",
+      "x": 60,
+      "y": 40,
+      "w": 10,
+      "h": 20
+    },
+    {
+      "name": "images/img2.png",
+      "x": 70,
+      "y": 40,
+      "w": 10,
+      "h": 20
+    },
+    {
+      "name": "images/img3.png",
+      "x": 0,
+      "y": 50,
+      "w": 20,
+      "h": 10
+    },
+    {
+      "name": "images/img4.png",
+      "x": 20,
+      "y": 50,
+      "w": 10,
+      "h": 20
+    },
+    {
+      "name": "images/img5.png",
+      "x": 0,
+      "y": 60,
+      "w": 20,
+      "h": 10
+    },
+    {
+      "name": "images/img1.png",
+      "x": 30,
+      "y": 60,
+      "w": 20,
+      "h": 10
+    },
+    {
+      "name": "images/img13.png",
+      "x": 30,
+      "y": 50,
+      "w": 10,
+      "h": 10
+    },
+    {
+      "name": "images/img15.png",
+      "x": 50,
+      "y": 60,
+      "w": 10,
+      "h": 10
+    },
+    {
+      "name": "images/img14.png",
+      "x": 60,
+      "y": 60,
+      "w": 10,
+      "h": 10
+    },
+    {
+      "name": "images/img16.png",
+      "x": 70,
+      "y": 60,
+      "w": 10,
+      "h": 10
+    },
+    {
+      "name": "images/img17.png",
+      "x": 80,
+      "y": 60,
+      "w": 10,
+      "h": 10
+    }
+  ]
+}
